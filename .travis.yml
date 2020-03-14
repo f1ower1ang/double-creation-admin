@@ -8,7 +8,7 @@ before_install:
   - npm install
 
 script:
-  - npm run build
+  - npm run build:prod
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t flowerlang/admin:latest .
   - docker push flowerlang/flowerlang:latest
