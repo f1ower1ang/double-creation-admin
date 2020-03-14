@@ -1,5 +1,14 @@
 language: node_js
-node_js: 10
-script: npm run test
-notifications:
-  email: false
+node_js:
+  - "12"
+services:
+  - docker
+
+before_install:
+  - npm install
+
+script:
+  - npm run build
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t flowerlang/admin:latest .
+  - docker push flowerlang/flowerlang:latest
