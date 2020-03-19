@@ -41,7 +41,7 @@ export function addCourse(data) {
 
 export function updateCourseToDocker(courseId, data) {
   return request({
-    url: path.course.docker + '?courseId=' + courseId + '&callback=http://175.24.130.223:2375/images/callback',
+    url: path.course.docker + '?courseId=' + courseId,
     method: 'post',
     headers: { 'Content-Type': 'multipart/form-data' },
     data

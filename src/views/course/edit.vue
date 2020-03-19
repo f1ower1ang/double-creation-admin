@@ -57,9 +57,9 @@ export default {
   },
   created() {
     getCourseById(this.$route.query.id).then((res) => {
-      this.course = res.data
-      this.course.courseId = res.data.id
-      this.imageUrl = res.data.courseavater
+      this.course = res.data.course
+      this.course.courseId = res.data.course.id
+      this.imageUrl = res.data.course.courseavater
     })
   },
   methods: {
@@ -104,7 +104,8 @@ export default {
         if (this.courseFile) {
           const form = new FormData()
           form.append('file', this.courseFile)
-          updateCourseToDocker(this.course.courseId, form)
+          form.append('token', new Date().getTime().toString())
+          await updateCourseToDocker(this.course.courseId, form)
         }
         const res = await editCourse(this.course)
         if (res.errCode === 200) {
