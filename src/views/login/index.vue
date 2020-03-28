@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">AMOM人工智能实验室后台管理系统</h3>
       </div>
 
       <el-form-item prop="email">
@@ -41,7 +41,7 @@
         </span>
       </el-form-item>
 
-      <div class="tips" v-if="fail">
+      <div v-if="fail" class="tips">
         <span>账号或密码不正确</span>
       </div>
 

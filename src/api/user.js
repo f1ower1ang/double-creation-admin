@@ -23,10 +23,11 @@ export function logout() {
   })
 }
 
-export function getUsers() {
+export function getUsers(params) {
   return request({
     url: path.user.userList,
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 

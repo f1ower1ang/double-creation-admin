@@ -2,7 +2,7 @@
   <div class="course-add-page">
     <el-form ref="form" label-width="100px" :model="course" :rules="formRule">
       <div class="course-file">
-        <el-form-item label="课程图片" prop="courseavater" style="width: 50%">
+        <el-form-item label="实验图片" prop="courseavater" style="width: 50%">
           <el-image :src="course.courseavater" style="width: 200px; height: 120px" :auto-upload="false">
             <div slot="error" class="el-image__error" v-html="errorTips" />
           </el-image>
@@ -11,7 +11,7 @@
           </el-upload>
           <el-input v-model="course.courseavater" style="display: none" />
         </el-form-item>
-        <el-form-item label="课程文件" prop="coursefile">
+        <el-form-item label="实验文件" prop="coursefile">
           <el-upload action="#" class="file-upload" drag :http-request="readFile" :on-remove="removeFile" show-file-list :file-list="fileList">
             <i class="el-icon-upload" />
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -20,10 +20,10 @@
           <el-input v-model="course.coursefile" style="display: none" />
         </el-form-item>
       </div>
-      <el-form-item label="课程名称" prop="coursename">
+      <el-form-item label="实验名称" prop="coursename">
         <el-input v-model="course.coursename" size="small" style="width: 50%" />
       </el-form-item>
-      <el-form-item label="课程类别" prop="catalogId">
+      <el-form-item label="实验类别" prop="catalogId">
         <el-select v-model="course.catalogId" placeholder="请选择分类" size="small">
           <el-option
             v-for="item in catalogs"
@@ -33,10 +33,10 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="课程时间" prop="coursetime">
+      <el-form-item label="实验时间" prop="coursetime">
         <el-input-number v-model="course.coursetime" size="small" :min="0" />
       </el-form-item>
-      <el-form-item label="课程详情" prop="coursedetail">
+      <el-form-item label="实验详情" prop="coursedetail">
         <markdown-editor ref="markdown" v-model="course.coursedetail" :height="height" />
         <el-input v-model="course.coursedetail" style="display: none" />
       </el-form-item>
@@ -58,7 +58,7 @@ export default {
   data() {
     const validateTime = (rule, value, callback) => {
       if (value === 0) {
-        callback(new Error('课程时间必须大于0'))
+        callback(new Error('实验时间必须大于0'))
       } else {
         callback()
       }
@@ -74,7 +74,7 @@ export default {
     }
     const validateFile = (rule, value, callback) => {
       if (value.length === 0) {
-        callback(new Error('请上传课程文件'))
+        callback(new Error('请上传实验文件'))
       } else if (value === 'error') {
         callback(new Error('非法文件上传'))
       } else {
@@ -97,10 +97,10 @@ export default {
       courseFile: null,
       height: '300px',
       formRule: {
-        catalogId: { required: true, message: '请选择课程分类', trigger: 'change' },
+        catalogId: { required: true, message: '请选择实验分类', trigger: 'change' },
         courseavater: { required: true, validator: validateImage, trigger: 'change' },
-        coursename: { required: true, message: '请输入课程名称', trigger: 'blur' },
-        coursedetail: { required: true, message: '请输入课程详情', trigger: 'change' },
+        coursename: { required: true, message: '请输入实验名称', trigger: 'blur' },
+        coursedetail: { required: true, message: '请输入实验详情', trigger: 'change' },
         coursetime: { required: true, validator: validateTime, trigger: 'change', type: 'number' },
         coursefile: { required: true, validator: validateFile, trigger: 'change' }
       },

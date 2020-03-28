@@ -70,27 +70,27 @@ export const constantRoutes = [
   {
     path: '/course',
     component: Layout,
-    meta: { title: '课程管理', icon: 'education' },
+    meta: { title: '实验管理', icon: 'education' },
     redirect: '/course/list',
     children: [
       {
         path: 'list',
         name: 'CourseList',
         component: () => import('@/views/course/list'),
-        meta: { title: '课程列表' }
+        meta: { title: '实验列表' }
       },
       {
         path: 'edit',
         name: 'CourseEdit',
         component: () => import('@/views/course/edit'),
         hidden: true,
-        meta: { title: '编辑课程' }
+        meta: { title: '编辑实验' }
       },
       {
         path: 'add',
         name: 'CourseAdd',
         component: () => import('@/views/course/add'),
-        meta: { title: '添加课程' }
+        meta: { title: '添加实验' }
       }
     ]
   }

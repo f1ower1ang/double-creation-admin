@@ -1,6 +1,6 @@
 <template>
   <div class="list-page">
-    <el-button type="primary" size="medium" icon="el-icon-edit" @click="goTo">添加课程</el-button>
+    <el-button type="primary" size="medium" icon="el-icon-edit" @click="goTo">添加实验</el-button>
     <el-table
       ref="table"
       v-loading="listLoading"
@@ -14,22 +14,22 @@
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form inline class="demo-table-expand" label-position="left">
-            <el-form-item label="课程id">
+            <el-form-item label="实验id">
               <span>{{ props.row.id }}</span>
             </el-form-item>
-            <el-form-item label="课程名称">
+            <el-form-item label="实验名称">
               <span>{{ props.row.coursename }}</span>
             </el-form-item>
-            <el-form-item label="课程图片">
+            <el-form-item label="实验图片">
               <el-image :src="props.row.courseavater" style="width: 180px; height: 105px" alt="" />
             </el-form-item>
-            <el-form-item label="课程详情">
+            <el-form-item label="实验详情">
               <div v-html="props.row.coursedetail" />
             </el-form-item>
             <el-form-item label="学习人数">
               <span>{{ props.row.joinnumber }}</span>
             </el-form-item>
-            <el-form-item label="课程评分">
+            <el-form-item label="实验评分">
               <span>{{ props.row.rate }}</span>
             </el-form-item>
             <el-form-item label="创建时间">
@@ -90,16 +90,16 @@ export default {
           label: 'id',
           prop: 'id'
         }, {
-          label: '课程名称',
+          label: '实验名称',
           prop: 'coursename'
         }, {
-          label: '课程评分',
+          label: '实验评分',
           prop: 'rate'
         }, {
           label: '学习人数',
           prop: 'joinnumber'
         }, {
-          label: '课程时间 / 分',
+          label: '实验时间 / 分',
           prop: 'coursetime'
         }, {
           label: '创建时间',
@@ -125,14 +125,14 @@ export default {
     },
     getWidth(header) {
       const label = header.label
-      if (label === 'id' || label === '课程评分') {
+      if (label === 'id' || label === '实验评分') {
         return 80
-      } else if (label === '学习人数' || label === '课程时间 / 分') {
+      } else if (label === '学习人数' || label === '实验时间 / 分') {
         return 120
       }
     },
     handleDelete(row, id) {
-      this.$confirm('此操作将永久删除该课程, 是否继续?', '提示', {
+      this.$confirm('此操作将永久删除该实验, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

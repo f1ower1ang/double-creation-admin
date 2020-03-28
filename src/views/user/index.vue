@@ -88,9 +88,9 @@
       :page-size="limit"
       layout="total, prev, pager, next, sizes, jumper"
       :total="total"
+      hide-on-single-page
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      hide-on-single-page
     />
   </div>
 </template>
@@ -175,8 +175,11 @@ export default {
   methods: {
     async fetchData() {
       this.listLoading = true
-      const { data } = await getUsers()
-      this.totalList = data.map((item) => {
+      const { data } = await getUsers({
+        pages: this.page,
+        size: this.limit
+      })
+      this.list = data.records.map((item) => {
         return {
           id: item.id,
           avatar: item.avatar,
@@ -190,8 +193,7 @@ export default {
           email: item.email
         }
       })
-      this.total = data.length
-      this.list = this.totalList.slice((this.page - 1) * this.limit, this.page * this.limit)
+      this.total = data.total
       this.listLoading = false
     },
     handleEdit(index, row) {
@@ -274,21 +276,14 @@ export default {
         })
       })
     },
-    setCurrentList() {
-      this.listLoading = true
-      setTimeout(() => {
-        this.list = this.totalList.slice((this.page - 1) * this.limit, this.page * this.limit)
-        this.listLoading = false
-      }, 500)
-    },
     handleSizeChange(size) {
       this.limit = size
       localStorage.userLimit = size
-      this.setCurrentList()
+      this.fetchData()
     },
     handleCurrentChange(page) {
       this.page = page
-      this.setCurrentList()
+      this.fetchData()
     }
   }
 }

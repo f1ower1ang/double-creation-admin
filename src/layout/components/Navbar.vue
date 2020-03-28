@@ -9,7 +9,7 @@
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
       </template>
       <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper" v-if="userInfo">
+        <div v-if="userInfo" class="avatar-wrapper">
           <img :src="userInfo.avatar" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
@@ -19,12 +19,6 @@
               主页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出登录</span>
           </el-dropdown-item>
@@ -59,7 +53,7 @@ export default {
     },
     async logout() {
       try {
-        const res = await this.$store.dispatch('user/logout')
+        await this.$store.dispatch('user/logout')
         this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       } catch (e) {
         console.log(e)

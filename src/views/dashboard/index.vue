@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text" v-if="userInfo">name: {{ userInfo.name }}</div>
+    <div v-if="userInfo" class="dashboard-text">name: {{ userInfo.name }}</div>
     <div class="dashboard-text">roles: <span v-for="role in roles" :key="role">{{ role }}</span></div>
   </div>
 </template>

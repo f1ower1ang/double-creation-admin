@@ -2,13 +2,13 @@
   <div class="course-edit-page">
     <el-form label-width="100px">
       <div class="course-file">
-        <el-form-item label="课程图片" style="width: 50%">
+        <el-form-item label="实验图片" style="width: 50%">
           <el-image :src="imageUrl" style="width: 200px; height: 120px" :auto-upload="false" />
           <el-upload action="#" :http-request="readImage" class="avatar-uploader" :show-file-list="false">
             <i class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
-        <el-form-item label="课程文件">
+        <el-form-item label="实验文件">
           <el-upload action="#" class="file-upload" drag :http-request="readFile" show-file-list :file-list="fileList" :on-remove="removeFile">
             <i class="el-icon-upload" />
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -17,13 +17,13 @@
           <el-input v-model="course.coursefile" style="display: none" />
         </el-form-item>
       </div>
-      <el-form-item label="课程名称">
+      <el-form-item label="实验名称">
         <el-input v-model="course.coursename" size="small" style="width: 50%" />
       </el-form-item>
-      <el-form-item label="课程时间">
+      <el-form-item label="实验时间">
         <el-input-number v-model="course.coursetime" size="small" />
       </el-form-item>
-      <el-form-item label="课程详情">
+      <el-form-item label="实验详情">
         <markdown-editor ref="markdown" v-model="course.coursedetail" :height="height" />
       </el-form-item>
       <el-form-item style="margin-bottom: 0">
@@ -85,7 +85,7 @@ export default {
     readFile(data) {
       if (data.file.type !== 'application/x-tar') {
         this.fileList = []
-        this.$message.error('上传课程文件只能是 tar 格式!')
+        this.$message.error('上传实验文件只能是 tar 格式!')
       } else {
         this.courseFile = data.file
       }
